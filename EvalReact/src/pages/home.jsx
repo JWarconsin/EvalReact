@@ -1,9 +1,8 @@
 import React from 'react';
 import '../css/style.css';
 import { useState, useEffect } from 'react';
-import { Affiche } from '../components/Affiche';
+import Affiche from '../components/Affiche';
 import { Link } from 'react-router-dom';
-
     // let KEY_API = "7c51ce5f51b2a0e2bb3bf45b2afaa9ae"
     let url = "https://api.themoviedb.org/3/movie/popular?api_key=7c51ce5f51b2a0e2bb3bf45b2afaa9ae&language=fr-FR&page=1"
 
@@ -29,6 +28,7 @@ export default function Home() {
         console.log(film),
         <Affiche data={film} key={index} />
         ));
+
 
     return (
         <>
