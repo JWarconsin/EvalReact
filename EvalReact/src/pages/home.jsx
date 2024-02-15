@@ -1,9 +1,11 @@
 import React from 'react';
 import '../css/style.css';
 import { useState, useEffect } from 'react';
+import { Affiche } from '../components/Affiche';
+import { Link } from 'react-router-dom';
 
-    let KEY_API = "7c51ce5f51b2a0e2bb3bf45b2afaa9ae"
-    let url = "https://api.themoviedb.org/3/movie/popular?api_key="+KEY_API+"&language=fr-FR&page=1"
+    // let KEY_API = "7c51ce5f51b2a0e2bb3bf45b2afaa9ae"
+    let url = "https://api.themoviedb.org/3/movie/popular?api_key=7c51ce5f51b2a0e2bb3bf45b2afaa9ae&language=fr-FR&page=1"
 
 export default function Home() {
     const [films, setFilms] = useState([])
@@ -11,7 +13,7 @@ export default function Home() {
         fetch(url)
           .then((response) => response.json())
           .then((data) => {
-            setFilms(data);
+            setFilms(data.results);
             console.log(data);
           })
           .catch((err) => {
@@ -20,11 +22,13 @@ export default function Home() {
       }, []);
 
 
-    //   const List = pokemons.map((data, index) => (
-    //     <CardPokemon data={data} key={index}  />
-    //   ));
+    
+    
 
-      
+    const List = films.map((film, index) => (
+        console.log(film),
+        <Affiche data={film} key={index} />
+        ));
 
     return (
         <>
@@ -67,7 +71,9 @@ export default function Home() {
                         <button className="active" id="day">Aujourd'hui</button>
                         <button id="week">Cette semaine</button>
                     </div>
-                    <div className="grid-tendances" id="tendances"></div>
+                    <div className="grid-tendances" id="tendances">
+                        {List}
+                    </div>
                 </div>
             </div>
 
